@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { useSlideContext } from '@slidev/client'
 
 let clicks
 try {

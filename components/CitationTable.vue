@@ -25,6 +25,6 @@ const rows = computed(() => props.citations.map(c => [`[${c.id}]`, c.text]))
   <SectionTitle v-if="title" :text="title" class="mb-2" />
   <div v-if="title" class="h-0.5 bg-fh-dark-blue mb-0"></div>
 
-  <Table :headers="['Kürzel', 'Quelle']" :columnWidths="[idWidth, '1fr']" :rows="rows" size="lg" />
+  <Table :headers="['Kürzel', 'Quelle']" :column-widths="[idWidth, '1fr']" :rows="rows" size="lg" />
   <slot />
 </template>

@@ -24,7 +24,7 @@ const rows = computed(() =>
 <template>
   <Table
     :headers="['Nr.', 'Beschreibung', 'Quelle']"
-    :columnWidths="['80px', '1fr', '200px']"
+    :column-widths="['80px', '1fr', '200px']"
     :rows="rows"
   />
 </template>
