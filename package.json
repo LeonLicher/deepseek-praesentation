@@ -1,0 +1,30 @@
+{
+  "name": "slidev-theme-booky",
+  "version": "0.1.0",
+  "description": "Reusable Slidev theme/layout foundation extracted from the Booky presentation",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
+    "lint:fix": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
+    "format": "prettier --write \"**/*.{vue,js,ts,json,md}\""
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.11.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-vue": "^10.6.2",
+    "prettier": "^3.7.4",
+    "unocss": "^66.5.4"
+  }
+}
