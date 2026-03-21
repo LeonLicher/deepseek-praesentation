@@ -6,7 +6,9 @@
   "private": false,
   "scripts": {
     "dev": "slidev",
+    "dev:showcase": "slidev slides.showcase.md",
     "build": "slidev build",
+    "build:showcase": "slidev build slides.showcase.md",
     "lint": "eslint . --ext .vue,.js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --ext .vue,.js,.ts,.jsx,.tsx --fix",
     "format": "prettier --write \"**/*.{vue,js,ts,json,md}\""

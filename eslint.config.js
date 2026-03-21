@@ -1,10 +1,10 @@
 import js from '@eslint/js'
-import pluginVue from 'eslint-plugin-vue'
-import * as parserVue from 'vue-eslint-parser'
-import configPrettier from 'eslint-config-prettier'
-import pluginPrettier from 'eslint-plugin-prettier'
 import tseslint from '@typescript-eslint/eslint-plugin'
 import * as parserTypeScript from '@typescript-eslint/parser'
+import configPrettier from 'eslint-config-prettier'
+import pluginPrettier from 'eslint-plugin-prettier'
+import pluginVue from 'eslint-plugin-vue'
+import * as parserVue from 'vue-eslint-parser'
 
 export default [
   js.configs.recommended,
@@ -22,6 +22,19 @@ export default [
         sourceType: 'module'
       },
       globals: {
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
+        URL: 'readonly',
+        process: 'readonly',
+        global: 'readonly',
+        module: 'readonly',
+        require: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
         $slidev: 'readonly',
         $nav: 'readonly',
         $clicks: 'readonly',
@@ -34,11 +47,6 @@ export default [
     plugins: {
       prettier: pluginPrettier,
       '@typescript-eslint': tseslint
-    },
-    env: {
-      browser: true,
-      node: true,
-      es2021: true
     },
     rules: {
       'prettier/prettier': 'warn',

@@ -40,11 +40,11 @@ chapter: 1
   for your study modules.
 </Text>
 
-<BulletedList :items="[
-  'Use this repo as template for new module presentations',
-  'Adapt only the content in slides.md and public assets',
-  'Keep shared components/layouts centralized here'
-]" />
+<BulletedList>
+  <li>Use this repo as template for new module presentations</li>
+  <li>Adapt only the content in slides.md and public assets</li>
+  <li>Keep shared components/layouts centralized here</li>
+</BulletedList>
 
 ---
 layout: closing

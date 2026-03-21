@@ -25,4 +25,3 @@ const chapters = $slidev.configs?.presentationInfo?.chapters || []
     </OutlineItem>
   </Outline>
 </template>
-w
