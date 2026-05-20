@@ -40,10 +40,34 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 ## Folie 3: Vortragende
 *Kurze Vorstellung — wer macht was.* (10 Sek)
 
-## Folie 4: Chapter Intro „Foundation"
+## Folie 4: Model Card — DeepSeek-V3 / R1
+
+**Was du sagen musst (45 Sek):**
+
+> Bevor wir in die technischen Details gehen — der **Steckbrief unseres Modells**. Eine Model Card im Standard nach Mitchell et al. 2019, die jedes professionelle ML-Projekt dokumentieren sollte.
+>
+> Links seht ihr die **Modelldaten**: Entwickler DeepSeek AI, 671 Milliarden Parameter, davon **nur 5,5 % aktiv pro Token** dank Mixture of Experts. Kontextlänge 128.000 Tokens — also etwa ein 250-seitiges Buch auf einmal verarbeitbar.
+>
+> Darunter die **Trainingsdaten**: 14,8 Billionen Tokens, gelaufen auf gut 2.000 H800-GPUs in FP8-Precision. Trainingskosten **5,6 Millionen Dollar** — Größenordnungen unter GPT-4.
+>
+> Rechts die **Benchmark-Ergebnisse**: V3 spielt auf Augenhöhe mit GPT-4o und Claude 3.5. Besonders auffällig die letzte Zeile: **AIME** — das ist eine Mathematik-Olympiade-Benchmark. Hier zeigt R1 mit **79,8 %**, was Reasoning-Training bringt: GPT-4o kommt da nur auf 13 %.
+>
+> **Use Cases**: Forschung, Chat, Code, Reasoning. **Nicht geeignet** für medizinische Beratung oder sicherheitskritische Anwendungen.
+
+**Warum diese Folie wichtig ist:**
+- Model Cards sind der **Industriestandard** (HuggingFace, Google, Anthropic — alle nutzen sie)
+- Signalisiert dem Prof: ihr habt ML-Dokumentationspraxis verstanden
+- Liefert in 45 Sek alle Kernzahlen — der Rest des Vortrags vertieft
+
+**Mögliche Prof-Fragen:**
+- *„Was ist eine Model Card?"* → „Eine standardisierte Modell-Dokumentation, die Architektur, Trainingsdaten, Performance, Limitationen und Anwendungsbereiche umfasst. Eingeführt von Mitchell et al. bei Google 2019."
+- *„Wo findet man Model Cards in der Praxis?"* → „Auf HuggingFace bei jedem Modell, in den Tech Reports der großen Labs, und zunehmend als Compliance-Anforderung im EU AI Act."
+- *„Welche Sektion fehlt euch?"* → Ehrliche Antwort: Ethical Considerations und Bias-Analyse sind in den DeepSeek-Reports nur knapp behandelt — diese Lücke kann man konstruktiv ansprechen.
+
+## Folie 5: Chapter Intro „Foundation"
 *Übergang.* (5 Sek)
 
-## Folie 5: Was ist DeepSeek?
+## Folie 6: Was ist DeepSeek?
 
 **Was du sagen musst (60 Sek):**
 
@@ -56,7 +80,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 **Mögliche Prof-Frage:** *„Warum ist Open-Weight ein Vorteil?"*
 **Antwort:** Reproduzierbarkeit der Forschung, kein Vendor-Lock-in, kostenfreie Nutzung, lokales Hosting (Datenschutz).
 
-## Folie 6: Modellfamilie — V1 bis R1
+## Folie 7: Modellfamilie — V1 bis R1
 
 **Was du sagen musst (90 Sek):**
 
@@ -73,7 +97,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 **Mögliche Prof-Frage:** *„Was bedeutet ‚aktiv pro Token'?"*
 **Antwort:** Bei MoE-Modellen wird für jedes Wort nur eine Teilmenge der Parameter berechnet (z. B. 9 von 257 Experten pro Layer). Das spart massiv Rechenzeit beim Inferenzieren.
 
-## Folie 7: Basisarchitektur
+## Folie 8: Basisarchitektur
 
 **Was du sagen musst (60 Sek):**
 
@@ -93,10 +117,10 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 
 # TEIL 2 — Daniel (Innovations, ~5 Min)
 
-## Folie 8: Chapter Intro „Key Innovations"
+## Folie 9: Chapter Intro „Key Innovations"
 *Übergang.* (5 Sek)
 
-## Folie 9: Multi-Head Latent Attention (MLA)
+## Folie 10: Multi-Head Latent Attention (MLA)
 
 **Was Daniel sagen muss (75 Sek):**
 
@@ -117,7 +141,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 **Mögliche Prof-Frage:** *„Wo geht durch die Kompression Information verloren?"*
 **Antwort:** Die Down-/Up-Projektion ist gelernt — das Modell lernt während des Trainings, welche Informationen wichtig sind. Empirisch zeigt sich: kaum Qualitätsverlust.
 
-## Folie 10: DeepSeekMoE
+## Folie 11: DeepSeekMoE
 
 **Was Daniel sagen muss (75 Sek):**
 
@@ -137,7 +161,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 >
 > **Bonus**: **Auxiliary-loss-free Load Balancing**. Normalerweise erzwingt man Lastverteilung über einen Hilfsverlust, der aber die Modellqualität verschlechtert. V3 nutzt stattdessen einen dynamischen Bias pro Experte — der Router lernt automatisch ohne Qualitätskompromiss.
 
-## Folie 11: Multi-Token Prediction (MTP)
+## Folie 12: Multi-Token Prediction (MTP)
 
 **Was Daniel sagen muss (60 Sek):**
 
@@ -154,7 +178,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 
 **Vereinfachte Analogie:** *Wie wenn ein Schachspieler nicht nur den nächsten Zug, sondern auch den übernächsten plant — bessere Strategie, schnellere Entscheidungen.*
 
-## Folie 12: Trainingseffizienz
+## Folie 13: Trainingseffizienz
 
 **Was Daniel sagen muss (60 Sek):**
 
@@ -166,7 +190,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 >
 > **3. Kostenresultat**: V3 wurde mit **2.788k H800-GPU-Stunden** trainiert — das entspricht ca. **5,6 Mio. USD**. GPT-4 wird auf über 100 Mio. USD geschätzt.
 
-## Folie 13: DeepSeek-R1 — Reasoning
+## Folie 14: DeepSeek-R1 — Reasoning
 
 **Was Daniel sagen muss (75 Sek):**
 
@@ -198,9 +222,9 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 
 # TEIL 3 — Zusammen
 
-## Folie 14: Chapter Intro „Zusammenfassung"
+## Folie 15: Chapter Intro „Zusammenfassung"
 
-## Folie 15: Drei Kernaussagen
+## Folie 16: Drei Kernaussagen
 
 **Wer auch immer den Schluss übernimmt (30 Sek):**
 
@@ -210,7 +234,7 @@ Wenn dich der Prof unterbricht und du nur einen Satz sagen kannst — das ist er
 > 2. **Trainingsökonomie als Forschungsziel**: FP8, DualPipe, aux-loss-free Load Balancing — alles zielt auf günstigeres Training. Das demokratisiert KI-Forschung.
 > 3. **Reasoning ohne menschliches Feedback**: R1-Zero ist ein Meilenstein — komplexes Denken kann allein durch regelbasierte Rewards emergent entstehen.
 
-## Folie 16: Quellen
+## Folie 17: Quellen
 *„Alle Tech Reports sind auf arXiv frei verfügbar. Modelle auf HuggingFace und GitHub. Wir freuen uns auf Fragen."*
 
 ---

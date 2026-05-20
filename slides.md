@@ -66,6 +66,82 @@ subtitle: Modul Deep Learning - MDL 2
 </div>
 
 ---
+title: Model Card — DeepSeek-V3 / R1
+subtitle: Standardisierter Modell-Steckbrief nach Mitchell et al. (2019)
+---
+
+<Columns columns="1fr 1fr" gap="1rem">
+
+  <div>
+    <Table
+      :headers="['Model Details', 'DeepSeek-V3 / R1']"
+      :rows="[
+        ['Entwickler', 'DeepSeek AI (CN)'],
+        ['Release', 'V3: 12/2024 · R1: 01/2025'],
+        ['Architektur', 'Decoder-only Transformer + MoE'],
+        ['Key Components', 'MLA · DeepSeekMoE · MTP'],
+        ['Parameter (gesamt)', '671 Mrd.'],
+        ['Aktiv pro Token', '37 Mrd. (5,5 %)'],
+        ['Kontextlänge', '128.000 Tokens'],
+        ['Lizenz', 'DeepSeek Model License (Open Weights)']
+      ]"
+      accent="blue"
+      :columnWidths="['38%', '62%']"
+      size="sm"
+    />
+
+    <div class="mt-3">
+      <Table
+        :headers="['Training', 'Wert']"
+        :rows="[
+          ['Daten-Volumen', '14,8 Billionen Tokens'],
+          ['Hardware', '2.048 × NVIDIA H800'],
+          ['Precision', 'FP8 mixed-precision'],
+          ['GPU-Stunden', '2.788k'],
+          ['Trainingskosten', '≈ 5,6 Mio. USD']
+        ]"
+        accent="gray"
+        :columnWidths="['38%', '62%']"
+        size="sm"
+      />
+    </div>
+  </div>
+
+  <div>
+    <Table
+      :headers="['Benchmark', 'V3', 'GPT-4o', 'Claude-3.5']"
+      :rows="[
+        ['MMLU (Wissen)', '88,5', '87,2', '88,3'],
+        ['HumanEval (Code)', '82,6', '80,5', '81,7'],
+        ['MATH (Mathematik)', '61,6', '60,1', '63,8'],
+        ['GSM8K (Arithmetik)', '89,3', '88,3', '92,3'],
+        ['AIME (R1, Reasoning)', '79,8*', '13,4', '16,0']
+      ]"
+      accent="blue"
+      :highlights="[5]"
+      :columnWidths="['40%', '20%', '20%', '20%']"
+      size="sm"
+      caption="*R1-Wert · alle anderen Werte: V3-Base"
+    />
+
+    <div class="mt-3">
+      <ExampleBox title="Intended Use">
+        Forschung · Chat-Anwendungen · Code-Generierung · komplexes Reasoning (R1)
+      </ExampleBox>
+    </div>
+
+    <div class="mt-3">
+      <ExampleBox title="Out-of-Scope">
+        Medizinische / juristische Beratung ohne menschliche Verifikation · sicherheitskritische Infrastruktur · autonome Entscheidungen mit hohem Risiko
+      </ExampleBox>
+    </div>
+  </div>
+
+</Columns>
+
+<Footnote text="Model-Card-Standard: Mitchell et al. (2019), arXiv:1810.03993 · Modell-Quelle: huggingface.co/deepseek-ai/DeepSeek-V3 und /DeepSeek-R1" />
+
+---
 layout: chapter-intro
 chapter: 1
 ---
