@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx slidev *)"
+      "Bash(npx slidev *)",
+      "Bash(git checkout *)"
     ]
   }
 }
