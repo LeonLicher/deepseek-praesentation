@@ -2,18 +2,18 @@
 theme: default
 highlighter: shiki
 favicon: /images/favicon.png
-title: Component Showcase
+title: DeepSeek Component Showcase
 fonts:
   sans: 'Nunito Sans'
   serif: 'Nunito Sans'
   mono: 'Fira Code'
   weights: '400, 500, 600,700'
 presentationInfo:
-  title: 'Slidev Theme Booky'
+  title: 'DeepSeek Slidev Components'
   subtitle: 'Showcase aller Komponenten und Layouts'
   semester: 'Summer Semester 2026'
   authors:
-    - name: 'Theme Maintainer'
+    - name: 'Project Maintainer'
       matrikelnummer: '0000000'
       email: 'maintainer@example.com'
   chapters:
@@ -124,8 +124,8 @@ chapter: 2
 <Table
   :headers="['Aspect', 'Detail']"
   :rows="[
-    ['Theme', 'Booky reusable Slidev system'],
-    ['Compatibility', 'Designed for module presentations'],
+    ['Theme', 'Reusable Slidev component system'],
+    ['Compatibility', 'Designed for architecture-focused module presentations'],
     ['Output', 'Fast generation with consistent visuals']
   ]"
   :columnWidths="['30%', '70%']"
@@ -158,7 +158,7 @@ footnotes:
     src="/images/logo.png"
     alt="Project logo"
     caption="Logo example"
-    source="Booky Theme"
+    source="Project assets"
     captionAlign="left"
     maxWidth="100%"
     height="210px"

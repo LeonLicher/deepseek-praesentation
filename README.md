@@ -1,74 +1,92 @@
-# Slidev Theme Booky
+# DeepSeek Presentation
 
-Reusable Slidev theme/layout repository extracted from your Booky presentation so you can reuse it across other modules.
+Slidev project for a German university presentation in **Machine and Deep Learning II**.
 
-## Included
+The previous Booky-specific deck content is legacy. The reusable Slidev component/layout system remains useful, but the presentation is now about **DeepSeek in the context of Transformer Architectures II**.
 
-- `components/` custom Slidev/Vue components
-- `layouts/` custom layouts (`cover`, `chapter-intro`, `default`, `closing`, ...)
-- `composables/` helper composables
-- `setup/` Slidev setup hooks
-- `public/images/` required shared image assets used by layouts
-- `style.css`, `uno.config.ts`, `vite.config.ts`, `eslint.config.js`
-- `slides.md` as starter template for a new module presentation
-- `slides.showcase.md` with example usage of all custom components/layouts
-- `docs/COMPONENT_API.md` compact API reference
-- `docs/AI_AGENT_GUIDE.md` token-efficient generation workflow for AI agents
+## Assignment
 
-## Local usage
+- Topic: DeepSeek model family / model collection
+- Focus: architecture, especially Transformer modifications
+- Time: 10 minutes total
+- Team: 2 students, about 5 minutes each
+- Length: 10 main slides, appendix allowed
+- Required: clean citations
+- Required: original model card in the appendix
+- Required: begin with a model overview
+- Required: use the latest and benchmark-strongest DeepSeek model available when the final deck is generated
+
+## Repository Map
+
+- `slides.md` - main Slidev deck; final presentation content belongs here.
+- `VORTRAG.md` - speaker notes, timing, research checklist, backup Q&A.
+- `docs/AI_AGENT_GUIDE.md` - workflow for AI agents creating the deck.
+- `docs/COMPONENT_API.md` - compact API reference for available layouts/components.
+- `slides.showcase.md` - runnable component syntax reference.
+- `public/` - images and other static assets referenced from slides.
+- `components/`, `layouts/`, `composables/`, `setup/` - reusable Slidev system.
+
+## Working Principle
+
+Do not trust the old deck as factual source material. Before generating the final presentation, verify the selected DeepSeek model, benchmark claims, architecture details, license, and model-card content from primary sources.
+
+Preferred source order:
+
+1. Official DeepSeek technical reports and papers
+2. Official DeepSeek GitHub repositories
+3. Official DeepSeek Hugging Face model cards
+4. arXiv papers cited by the reports
+5. Secondary sources only for context
+
+## Target Deck Shape
+
+The main deck should contain exactly 10 slides:
+
+1. Cover
+2. DeepSeek model family overview
+3. Selected latest/best model and model-card summary
+4. Decoder-only Transformer baseline
+5. Attention mechanism and context efficiency
+6. MoE/sparse-compute architecture
+7. Training and inference efficiency
+8. Reasoning or post-training architecture
+9. Benchmarks, limitations, and responsible use
+10. Key architecture takeaways
+
+The appendix should include the original model card, full bibliography, and optional backup material.
+
+## Local Usage
 
 ```bash
 npm install
 npm run dev
 ```
 
-For full component examples:
+For component examples:
 
 ```bash
 npm run dev:showcase
 ```
 
-## Reuse in a new module
-
-1. Clone this repo.
-2. Edit `slides.md` (frontmatter and content).
-3. Replace/extend assets in `public/` as needed.
-4. Keep reusable components/layouts in this repo and update once for all future modules.
-
-## AI Agent workflow (recommended)
-
-For best quality and token efficiency when you ask an AI to generate a new deck:
-
-1. Give the AI only these files first:
-	- `README.md`
-	- `docs/AI_AGENT_GUIDE.md`
-	- `docs/COMPONENT_API.md`
-2. Tell the AI your topic, chapter structure, and desired slide count.
-3. Let the AI generate content in `slides.md` only.
-4. Optionally ask the AI to open `slides.showcase.md` when it needs concrete component syntax.
-
-This keeps prompts small while still giving the AI everything it needs.
-
-## Publish as own GitHub repository
-
-Create an empty GitHub repo first (for example `slidev-theme-booky`), then run:
+For a quick static check:
 
 ```bash
-cd c:/Users/leonl/OneDrive/Desktop/web_und_mobile/slidev-theme-booky
-git init
-git add .
-git commit -m "Initial Slidev theme and layout extraction"
-git branch -M main
-git remote add origin https://github.com/<your-user>/slidev-theme-booky.git
-git push -u origin main
+npm run build
 ```
 
-## Optional workflow
+Run lint after changing Vue, JS, TS, layout, component, or setup files:
 
-For module-specific decks, create separate repos that consume this repo as a template/base and only keep module content there.
+```bash
+npm run lint
+```
 
-## Maintenance
+## AI Agent Workflow
 
-- Update `docs/COMPONENT_API.md` when component props/slots change.
-- Keep `slides.showcase.md` runnable as a living regression/reference deck.
-- Use `npm run lint` before committing larger component/layout changes.
+For efficient deck generation, provide agents with:
+
+1. `README.md`
+2. `docs/AI_AGENT_GUIDE.md`
+3. `docs/COMPONENT_API.md`
+4. `slides.md`
+
+Then ask them to research the current DeepSeek model landscape, choose the correct target model with citations, and replace `slides.md` with the final 10-slide deck plus appendix.

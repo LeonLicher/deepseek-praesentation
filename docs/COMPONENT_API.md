@@ -1,6 +1,17 @@
 # Component API
 
-Compact reference for AI agents and developers.
+Compact reference for AI agents and developers creating the DeepSeek Slidev deck.
+
+Use these existing layouts and components before considering new design primitives. For the DeepSeek presentation, `slides.md` should be enough for content work; open Vue sources only when this API reference is insufficient.
+
+Recommended usage:
+
+- `Table`: model overview, model-card summary, benchmark comparison.
+- `Columns`: side-by-side architecture explanations.
+- `DefinitionBox`: mechanisms such as attention, MoE routing, RL/post-training.
+- `ExampleBox`: implications, measured effects, limitations.
+- `Image`: architecture diagrams, official figures, model-card screenshot/excerpt.
+- `CitationTable`: appendix bibliography.
 
 ## Layouts
 
