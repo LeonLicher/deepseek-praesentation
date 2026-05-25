@@ -2,15 +2,15 @@
 theme: default
 highlighter: shiki
 favicon: /images/favicon.png
-title: DeepSeek V4 - Architektur
+title: DeepSeek
 fonts:
   sans: 'Nunito Sans'
   serif: 'Nunito Sans'
   mono: 'Fira Code'
   weights: '400, 500, 600,700'
 presentationInfo:
-  title: 'DeepSeek V4'
-  subtitle: 'Architektur im Kontext Transformer Architectures II'
+  title: 'DeepSeek'
+  subtitle: 'Architektur und Besonderheiten'
   semester: 'Sommersemester 2026'
   authors:
     - name: 'Leon Licher'
@@ -82,7 +82,7 @@ title: Technische Fakten zu DeepSeek V4
 subtitle: Pro, Flash und neue Architekturhebel
 chapter: 1
 footnotes:
-  - 'Quelle: DeepSeek V4 Preview Release und Hugging Face Model Card deepseek-ai/DeepSeek-V4-Pro, Zugriff 25.05.2026.'
+  - 'Quelle: DeepSeek V4 Preview Release und offizielle DeepSeek V4 Model Card PDF, Zugriff 25.05.2026.'
 ---
 
 <BulletedList title="DeepSeek V4 in einem Blick">
@@ -134,7 +134,7 @@ footnotes:
     caption="Compressed Sparse Attention mit Lightning Indexer"
     maxWidth="100%"
     height="345px"
-    source="DeepSeek-V4 Technical Report"
+    source="Q3"
   />
 </Columns>
 
@@ -165,7 +165,7 @@ footnotes:
     caption="Von Residual Connections zu manifold-constrained Hyper-Connections"
     maxWidth="100%"
     height="350px"
-    source="DeepSeek-V4 Technical Report"
+    source="Q3"
   />
 </Columns>
 
@@ -193,23 +193,25 @@ footnotes:
     </Text>
   </div>
 
-  <div>
+  <div class="flex flex-col items-center">
     <Image
       src="/images/abbildungen/muon-algorithm.png"
       alt="Muon Algorithmus"
       caption="Muon Optimizer: orthogonalisierte Parameter-Updates"
       maxWidth="100%"
       height="190px"
-      source="Keller Jordan, Muon"
+      source="Q5"
+      captionAlign="center"
     />
-    <div class="mt-2">
+    <div class="mt-2 flex justify-center">
       <Image
         src="/images/abbildungen/muon-benchmark.png"
         alt="Muon Benchmark"
         caption="Optimizer-Vergleich auf NanoGPT"
         maxWidth="100%"
         height="135px"
-        source="Understanding Muon"
+        source="Q6"
+        captionAlign="center"
       />
     </div>
   </div>
@@ -221,21 +223,21 @@ subtitle: V4-Pro vs. V4-Flash
 chapter: 2
 ---
 
-<figure class="m-0">
+<figure class="m-0 flex flex-col items-center">
   <img
     src="/images/abbildungen/architecture_deepseekv4.png"
     alt="DeepSeek V4 Architecture Overview"
-    class="w-full h-[365px] object-contain object-left"
+    class="w-full h-[365px] object-contain object-center"
   />
-  <figcaption class="text-xs text-gray-500 italic mt-1">Quelle: DeepSeek-V4 Architekturdiagramm und Technical Report, Zugriff 25.05.2026.</figcaption>
+  <figcaption class="text-xs text-gray-500 italic mt-1 text-center">Quelle: Q3.</figcaption>
 </figure>
 
 ---
 title: Benchmarks
-subtitle: V4-Pro verbessert vor allem Knowledge und Agentic Coding
+subtitle: Übersicht der Benchmarks
 chapter: 3
 footnotes:
-  - 'Quelle: DeepSeek-V4 Hugging Face Model Card, Evaluation Results, Zugriff 25.05.2026.'
+  - 'Quelle: Offizielle DeepSeek V4 Model Card PDF, Evaluation Results, Zugriff 25.05.2026.'
 ---
 
 <Columns columns="1fr 1fr" gap="1rem">
@@ -267,77 +269,201 @@ footnotes:
 </Columns>
 
 <div class="mt-4">
-  <ExampleBox title="Einordnung">
-    Zahlen sind modell- und benchmark-spezifisch: Base, Instruct und Thinking Mode nicht vermischen.
+  <ExampleBox title="Interpretationshinweis">
+    Die Werte beziehen sich auf spezifische Modellvarianten und Evaluationsmodi; Base-, Instruct- und Thinking-Ergebnisse sind getrennt zu interpretieren.
   </ExampleBox>
 </div>
 
 ---
 title: Fazit
-subtitle: Was DeepSeek V4 architektonisch zeigt
+subtitle: Zusammenfassung
 chapter: 3
 ---
 
-<NumberedList title="Drei Takeaways">
+<NumberedList title="Architekturelle Schlussfolgerungen">
   <li>
-    1M-Kontext braucht selektive Attention.
-    <SubText>CSA/HCA ersetzt teures Voll-Lesen durch Kompression und Retrieval.</SubText>
+    Langer Kontext erfordert selektive Attention.
+    <SubText>CSA/HCA reduzieren Berechnung und KV-Cache durch Sequenzkompression und blockweise Auswahl relevanter Inhalte.</SubText>
   </li>
   <li>
-    Skalierung bleibt sparse.
-    <SubText>MoE liefert hohe Kapazität bei wenigen aktiven Parametern.</SubText>
+    Sparse MoE entkoppelt Modellkapazität vom aktiven Rechenaufwand.
+    <SubText>Pro Token wird nur ein Teil der Experten aktiviert; die Gesamtparameterzahl steigt ohne proportionalen Inferenzaufwand.</SubText>
   </li>
   <li>
-    Stabilität ist Teil der Architektur.
-    <SubText>mHC, Muon und Post-Training sind keine Randdetails, sondern Enablement.</SubText>
+    Trainingsstabilität wird architektonisch adressiert.
+    <SubText>mHC, Muon und Post-Training stabilisieren Signalfluss, Optimierung und die Zusammenführung spezialisierter Fähigkeiten.</SubText>
   </li>
 </NumberedList>
 
-<div class="mt-4">
-  <ExampleBox title="Kernsatz">
-    DeepSeek V4 ist weniger „mehr Transformer“ als ein Umbau der Engpässe: Kontext, Routing, Signalfluss, Training.
-  </ExampleBox>
-</div>
-
 ---
-title: Anhang A - Model Card
-subtitle: Originalquelle und kompakter Auszug
-chapter: 3
-footnotes:
-  - 'Originale Model Card: Hugging Face deepseek-ai/DeepSeek-V4-Pro, Zugriff 25.05.2026.'
----
-
-<Table
-  :headers="['Feld', 'DeepSeek-V4-Pro']"
-  :rows="[
-    ['Original', 'https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro'],
-    ['Report', 'DeepSeek-V4: Towards Highly Efficient Million-Token Context Intelligence'],
-    ['Modellfamilie', 'V4-Pro und V4-Flash, Mixture-of-Experts'],
-    ['Parameter', '1.6T total, 49B aktiv'],
-    ['Kontext', '1M Tokens'],
-    ['Precision', 'FP4 + FP8 Mixed'],
-    ['Lizenz', 'MIT License'],
-    ['Nutzung', 'Chat, Reasoning, Coding, Agentic Workflows']
-  ]"
-  :columnWidths="['28%', '72%']"
-  accent="blue"
-  size="sm"
-/>
-
----
-title: Anhang B - Quellen
+title: Anhang A - Quellen
 subtitle: Primärquellen und verwendete Abbildungen
 chapter: 3
 ---
 
 <CitationTable
-  title="Quellen"
   :citations="[
     { id: 'Q1', text: 'DeepSeek API Docs: DeepSeek V4 Preview Release, 24.04.2026. https://api-docs.deepseek.com/news/news260424. Zugriff: 25.05.2026.' },
-    { id: 'Q2', text: 'DeepSeek-AI: DeepSeek-V4-Pro Model Card. https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro. Zugriff: 25.05.2026.' },
+    { id: 'Q2', text: 'DeepSeek: DeepSeek V4 Model Card PDF. https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026. Lokale Kopie: public/model-card/deepseek-V4-model-card-EN.pdf.' },
     { id: 'Q3', text: 'DeepSeek-AI: DeepSeek-V4 Technical Report PDF. https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf. Zugriff: 25.05.2026.' },
     { id: 'Q4', text: 'DeepSeek-AI: DeepSeek-V2, arXiv:2405.04434; DeepSeek-V3, arXiv:2412.19437; DeepSeekMoE, arXiv:2401.06066.' },
-    { id: 'Q5', text: 'Keller Jordan: Muon optimizer notes. https://kellerjordan.github.io/posts/muon/. Zugriff: 25.05.2026.' }
+    { id: 'Q5', text: 'Keller Jordan: Muon optimizer notes. https://kellerjordan.github.io/posts/muon/. Zugriff: 25.05.2026.' },
+    { id: 'Q6', text: 'Laker Newhouse: Understanding Muon, 2025. https://www.lakernewhouse.com/muon/. Zugriff: 25.05.2026.' }
   ]"
   idWidth="55px"
+/>
+
+---
+title: Anhang B - Abkürzungsverzeichnis
+subtitle: Architektur- und Benchmark-Kürzel
+chapter: 3
+---
+
+<Columns columns="1fr 1fr" gap="1rem">
+  <Table
+    :headers="['Kürzel', 'Bedeutung']"
+    :rows="[
+      ['CSA', 'Compressed Sparse Attention'],
+      ['DSA', 'DeepSeek Sparse Attention'],
+      ['FLOPs', 'Floating Point Operations'],
+      ['FP4/FP8', '4-/8-Bit Floating Point'],
+      ['GRPO', 'Group Relative Policy Optimization'],
+      ['HCA', 'Heavily Compressed Attention'],
+      ['KV-Cache', 'Key-Value-Cache'],
+      ['mHC', 'Manifold-Constrained Hyper-Connections']
+    ]"
+    :columnWidths="['30%', '70%']"
+    accent="blue"
+    size="sm"
+  />
+
+  <Table
+    :headers="['Kürzel', 'Bedeutung']"
+    :rows="[
+      ['GPQA', 'Graduate-Level Google-Proof Q&A'],
+      ['MMLU', 'Massive Multitask Language Understanding'],
+      ['MIT', 'MIT License'],
+      ['MLA', 'Multi-Head Latent Attention'],
+      ['MoE', 'Mixture of Experts'],
+      ['MTP', 'Multi-Token Prediction'],
+      ['RL', 'Reinforcement Learning'],
+      ['SFT', 'Supervised Fine-Tuning'],
+      ['SWE-Bench', 'Software Engineering Benchmark']
+    ]"
+    :columnWidths="['30%', '70%']"
+    accent="blue"
+    size="sm"
+  />
+</Columns>
+
+---
+title: Anhang C.1 - Model Card
+subtitle: Originalseite 1/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-1.png"
+  alt="Original DeepSeek V4 Model Card Seite 1"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.2 - Model Card
+subtitle: Originalseite 2/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-2.png"
+  alt="Original DeepSeek V4 Model Card Seite 2"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.3 - Model Card
+subtitle: Originalseite 3/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-3.png"
+  alt="Original DeepSeek V4 Model Card Seite 3"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.4 - Model Card
+subtitle: Originalseite 4/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-4.png"
+  alt="Original DeepSeek V4 Model Card Seite 4"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.5 - Model Card
+subtitle: Originalseite 5/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-5.png"
+  alt="Original DeepSeek V4 Model Card Seite 5"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.6 - Model Card
+subtitle: Originalseite 6/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-6.png"
+  alt="Original DeepSeek V4 Model Card Seite 6"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.7 - Model Card
+subtitle: Originalseite 7/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-7.png"
+  alt="Original DeepSeek V4 Model Card Seite 7"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
+/>
+
+---
+title: Anhang C.8 - Model Card
+subtitle: Originalseite 8/8
+chapter: 3
+footnotes:
+  - 'Original: DeepSeek V4 Model Card PDF, https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026.'
+---
+
+<img
+  src="/model-card/pages/deepseek-v4-model-card-8.png"
+  alt="Original DeepSeek V4 Model Card Seite 8"
+  class="mx-auto h-[455px] max-w-full rounded border border-gray-200 bg-white object-contain"
 />
