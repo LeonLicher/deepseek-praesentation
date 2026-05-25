@@ -88,6 +88,17 @@ Recommended usage:
   - `captionAlign?: 'left' | 'center' | 'right'`
 - Registers figure numbering when `caption` or `source` is set.
 
+### `ModelTimeline`
+- Props: `items: Array<{ date: string; title: string; detail: string; active?: boolean }>`
+- Presentation-specific horizontal model-family timeline.
+
+### `V4FactSheet`
+- Props:
+  - `metrics: Array<{ value: string; label: string }>`
+  - `proBullets: string[]`
+  - `flashBullets: string[]`
+- Presentation-specific fact layout for DeepSeek-V4-Pro and DeepSeek-V4-Flash.
+
 ### `FigureList`
 - Props: `title?: string` (default `Abbildungsverzeichnis`)
 - Uses figures registered by `Image`.
