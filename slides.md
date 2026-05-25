@@ -78,49 +78,41 @@ footnotes:
 </BulletedList>
 
 ---
-title: Warum DeepSeek V4-Pro?
-subtitle: Aktuellste und stärkste V4-Variante
+title: Technische Fakten zu DeepSeek V4
+subtitle: Pro, Flash und neue Architekturhebel
 chapter: 1
 footnotes:
   - 'Quelle: DeepSeek V4 Preview Release und Hugging Face Model Card deepseek-ai/DeepSeek-V4-Pro, Zugriff 25.05.2026.'
 ---
 
-<V4FactSheet
-  :metrics="[
-    { value: '1.6T', label: 'Total Params (Pro)' },
-    { value: '49B', label: 'aktiv / Token (Pro)' },
-    { value: '1 Mio.', label: 'Token Context' },
-    { value: '32T+', label: 'Pre-Training Tokens' }
-  ]"
-  :proBullets="[
-    '1.6T total / 49B aktiv (MoE)',
-    'Pro-Max = maximale Reasoning-Stufe',
-    'Coding-Benchmarks an der Spitze'
-  ]"
-  :flashBullets="[
-    '284B total / 13B aktiv (MoE)',
-    'gemeinsam: 1M Kontext, MIT-Lizenz',
-    'FP4 (Experts) + FP8 (Rest) Mixed'
-  ]"
-/>
+<BulletedList title="DeepSeek V4 in einem Blick">
+  <li>
+    <b>V4-Pro</b>: 1.6T Parameter, 49B aktiv pro Token
+    <SubText>Flagship-Variante für Reasoning, Knowledge und Coding.</SubText>
+  </li>
+  <li>
+    <b>V4-Flash</b>: 284B Parameter, 13B aktiv pro Token
+    <SubText>effizientere Variante für Standardaufgaben.</SubText>
+  </li>
+  <li>
+    <b>Gemeinsamkeiten</b>: 1M Kontext, MIT-Lizenz, FP4/FP8 Mixed Precision
+    <SubText>beide bleiben Mixture-of-Experts-Modelle.</SubText>
+  </li>
+  <li>
+    <b>Neue Hebel</b>: Hybrid Attention, mHC, Muon
+    <SubText>V4 verbessert Kontextkosten, Signalfluss und Training.</SubText>
+  </li>
+</BulletedList>
 
 ---
 title: Hybrid Attention
-subtitle: CSA + HCA für 1M-Kontext
+subtitle: 'Besonderheiten von DeepSeek: CSA und HCA'
 chapter: 2
 footnotes:
   - 'Quelle: DeepSeek-V4 Model Card, Hybrid Attention Architecture, Zugriff 25.05.2026.'
 ---
 
 <Columns columns="1.35fr 0.9fr" gap="1rem">
-  <Image
-    src="/images/abbildungen/csa.png"
-    alt="Compressed Sparse Attention"
-    maxWidth="100%"
-    height="345px"
-    source="DeepSeek-V4 Technical Report"
-  />
-
   <div class="space-y-3">
     <BulletedList title="CSA">
       <li>Token-Blöcke komprimieren</li>
@@ -130,54 +122,82 @@ footnotes:
     <Text title="HCA">
       stärker komprimierter globaler Überblick für lange Sequenzen.
     </Text>
-    <ExampleBox title="Effekt">
-      Bei 1M Kontext: 27 % FLOPs und 10 % KV-Cache vs. V3.2.
-    </ExampleBox>
+    <Text>
+      <HighlightedText>Konsequenz:</HighlightedText>
+      Bei 1M Kontext nur 27 % FLOPs und 10 % KV-Cache im Vergleich zu V3.2.
+    </Text>
   </div>
+
+  <Image
+    src="/images/abbildungen/csa.png"
+    alt="Compressed Sparse Attention"
+    caption="Compressed Sparse Attention mit Lightning Indexer"
+    maxWidth="100%"
+    height="345px"
+    source="DeepSeek-V4 Technical Report"
+  />
 </Columns>
 
 ---
-title: mHC
-subtitle: Manifold-Constrained Hyper-Connections
+title: Manifold-Constrained Hyper-Connections
+subtitle: 'Besonderheiten von DeepSeek: mHC'
 chapter: 2
 footnotes:
   - 'Quelle: DeepSeek-V4 Model Card und Technical Report, mHC-Abschnitt.'
 ---
 
 <Columns columns="1.2fr 0.85fr" gap="1rem">
-  <Image
-    src="/images/abbildungen/mHC.png"
-    alt="Residual Connections, Hyper-Connections und mHC"
-    maxWidth="100%"
-    height="350px"
-    source="DeepSeek-V4 Technical Report"
-  />
-
   <div class="space-y-3">
     <NumberedList title="mHC in drei Schritten" size="sm">
       <li>Residual-Stream auf mehrere Pfade erweitern</li>
       <li>Pre-, Post- und Res-Mapping kontrollieren</li>
       <li>Projektion stabilisiert die Signalenergie</li>
     </NumberedList>
-    <ExampleBox title="Ziel">
-      bessere Signalweitergabe ohne instabiles Training.
-    </ExampleBox>
+    <Text>
+      <HighlightedText>Konsequenz:</HighlightedText>
+      bessere Signalweitergabe über viele Layer ohne instabiles Training.
+    </Text>
   </div>
+
+  <Image
+    src="/images/abbildungen/mHC.png"
+    alt="Residual Connections, Hyper-Connections und mHC"
+    caption="Von Residual Connections zu manifold-constrained Hyper-Connections"
+    maxWidth="100%"
+    height="350px"
+    source="DeepSeek-V4 Technical Report"
+  />
 </Columns>
 
 ---
 title: Muon und Post-Training
-subtitle: Optimizer plus Experten-Konsolidierung
+subtitle: 'Besonderheiten von DeepSeek: Optimizer und Konsolidierung'
 chapter: 2
 footnotes:
   - 'Quelle: DeepSeek-V4 Model Card; Muon-Algorithmus nach Keller Jordan, Zugriff 25.05.2026.'
 ---
 
 <Columns columns="1fr 1fr" gap="1rem">
+  <div class="space-y-3">
+    <BulletedList title="Muon">
+      <li>orthogonalisierte Updates für Hauptmatrizen</li>
+      <li>AdamW bleibt für Spezialteile wie Embeddings</li>
+      <li>Newton-Schulz beschleunigt die Orthogonalisierung</li>
+    </BulletedList>
+    <Text title="Post-Training">
+      SFT + GRPO pro Domäne, danach On-Policy-Distillation in ein Modell.
+    </Text>
+    <Text>
+      <HighlightedText>Konsequenz:</HighlightedText>
+      stabileres Training und bessere Zusammenführung spezialisierter Experten.
+    </Text>
+  </div>
+
   <div>
     <Image
       src="/images/abbildungen/muon-algorithm.png"
       alt="Muon Algorithmus"
+      caption="Muon Optimizer: orthogonalisierte Parameter-Updates"
       maxWidth="100%"
       height="190px"
       source="Keller Jordan, Muon"
@@ -186,28 +206,12 @@ footnotes:
       <Image
         src="/images/abbildungen/muon-benchmark.png"
         alt="Muon Benchmark"
+        caption="Optimizer-Vergleich auf NanoGPT"
         maxWidth="100%"
-        height="150px"
+        height="135px"
         source="Understanding Muon"
       />
     </div>
-  </div>
-
-  <div class="space-y-3">
-    <Table
-      :headers="['Teil', 'Rolle']"
-      :rows="[
-        ['Muon', 'orthogonalisierte Updates'],
-        ['AdamW', 'Spezialteile wie Embeddings'],
-        ['Newton-Schulz', 'schnelle Orthogonalisierung']
-      ]"
-      :columnWidths="['34%', '66%']"
-      accent="gray"
-      size="sm"
-    />
-    <ExampleBox title="Post-Training">
-      SFT + GRPO pro Domäne, danach On-Policy-Distillation in ein Modell.
-    </ExampleBox>
   </div>
 </Columns>
 
