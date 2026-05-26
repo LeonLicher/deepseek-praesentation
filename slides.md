@@ -36,8 +36,11 @@ title: Modellübersicht
 subtitle: DeepSeek-Familie im Überblick
 chapter: 1
 footnotes:
-  - 'Release-Timeline: DeepSeek API Docs, News-Liste und V4 Preview Release, Zugriff 25.05.2026.'
+  - 'Release-Timeline: DeepSeek API Docs, News-Liste und V4 Preview Release,
+    Zugriff 25.05.2026.'
 ---
+
+<!-- Architektur: Reiner Dense Transformer im Llama-Sti -->
 
 <ModelTimeline
   :items="[
@@ -50,12 +53,18 @@ footnotes:
   ]"
 />
 
+<!--
+Start auf Basis von Llama Modell 
+eigener Datensatz
+-->
+
 ---
 title: Technologische Grundlagen
 subtitle: Bausteine aus V2 und V3
 chapter: 1
 footnotes:
-  - 'Quellen: DeepSeek-V2 arXiv:2405.04434; DeepSeek-V3 arXiv:2412.19437; DeepSeekMoE arXiv:2401.06066.'
+  - 'Quellen: DeepSeek-V2 arXiv:2405.04434; DeepSeek-V3 arXiv:2412.19437;
+    DeepSeekMoE arXiv:2401.06066.'
 ---
 
 <BulletedList title="Bisherige DeepSeek-Bausteine">
@@ -77,12 +86,25 @@ footnotes:
   </li>
 </BulletedList>
 
+<!--
+Multi Head Latent Attention
+Komprimieren des Arbeitsspeichers, des Kontext des Modells 
+93% weniger Speicherbedarf
+Analogie Komissar legt 99+1 Blätter Schreibtisch
+
+Multi Token Prediction
+Mehrere Token werden auf ein mal vorhergesagt. 
+Parallel ein Strang SingleToken Prediction und MTP
+Statisch Sinn = behalten -> Effizenz
+-->
+
 ---
 title: Technische Fakten zu DeepSeek V4
 subtitle: Pro, Flash und neue Architekturhebel
 chapter: 1
 footnotes:
-  - 'Quelle: DeepSeek V4 Preview Release und offizielle DeepSeek V4 Model Card PDF, Zugriff 25.05.2026.'
+  - 'Quelle: DeepSeek V4 Preview Release und offizielle DeepSeek V4 Model Card
+    PDF, Zugriff 25.05.2026.'
 ---
 
 <BulletedList title="DeepSeek V4 in einem Blick">
@@ -104,22 +126,27 @@ footnotes:
   </li>
 </BulletedList>
 
+<!--
+Löwenanteil des Speichers in FP4 abgelegt
+-->
+
 ---
 title: Hybrid Attention
 subtitle: 'Besonderheiten von DeepSeek: CSA und HCA'
 chapter: 2
 footnotes:
-  - 'Quelle: DeepSeek-V4 Model Card, Hybrid Attention Architecture, Zugriff 25.05.2026.'
+  - 'Quelle: DeepSeek-V4 Model Card, Hybrid Attention Architecture, Zugriff
+    25.05.2026.'
 ---
 
 <Columns columns="1.35fr 0.9fr" gap="1rem">
   <div class="space-y-3">
-    <BulletedList title="CSA">
+    <BulletedList title="CSA (Compressed Sparse Attention)">
       <li>Token-Blöcke komprimieren</li>
       <li>Indexer wählt Top-k Blöcke</li>
       <li>Sliding Window behält lokale Details</li>
     </BulletedList>
-    <Text title="HCA">
+    <Text title="HCA (Heavily Compressed Attention)">
       stärker komprimierter globaler Überblick für lange Sequenzen.
     </Text>
     <Text>
@@ -137,6 +164,10 @@ footnotes:
     source="Q3"
   />
 </Columns>
+
+<!--
+Kontext steigt normal quadratisch 100*100 Wörter
+-->
 
 ---
 title: Manifold-Constrained Hyper-Connections
@@ -168,6 +199,13 @@ footnotes:
     source="Q3"
   />
 </Columns>
+
+<!--
+c) Mathematik zur Stabilisierung der Matrix
+vanishing/ exploding Gradient
+
+Lösung mit Hyper-Connections
+-->
 
 ---
 title: Muon und Post-Training
@@ -305,7 +343,7 @@ chapter: 3
   :citations="[
     { id: 'Q1', text: 'DeepSeek API Docs: DeepSeek V4 Preview Release, 24.04.2026. https://api-docs.deepseek.com/news/news260424. Zugriff: 25.05.2026.' },
     { id: 'Q2', text: 'DeepSeek: DeepSeek V4 Model Card PDF. https://fe-static.deepseek.com/chat/transparency/deepseek-V4-model-card-EN.pdf. Zugriff: 25.05.2026. Lokale Kopie: public/model-card/deepseek-V4-model-card-EN.pdf.' },
-    { id: 'Q3', text: 'DeepSeek-AI: DeepSeek-V4 Technical Report PDF. https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf. Zugriff: 25.05.2026.' },
+    { id: 'Q3', text: 'DeepSeek V4 architecture deep dive. https://boringbot.substack.com/p/deepseek-v4-architecture-deep-dive?trk=public_post_comment-text. Zugriff: 26.05.2026.' },
     { id: 'Q4', text: 'DeepSeek-AI: DeepSeek-V2, arXiv:2405.04434; DeepSeek-V3, arXiv:2412.19437; DeepSeekMoE, arXiv:2401.06066.' },
     { id: 'Q5', text: 'Keller Jordan: Muon optimizer notes. https://kellerjordan.github.io/posts/muon/. Zugriff: 25.05.2026.' },
     { id: 'Q6', text: 'Laker Newhouse: Understanding Muon, 2025. https://www.lakernewhouse.com/muon/. Zugriff: 25.05.2026.' }
